@@ -1,0 +1,17 @@
+<h1>Destination</h1>
+<h2><%= @destination.name %></h2>
+<p>Country: <%= @destination.country %></p>
+<p>Total Likes: <%= @total_likes %></p>
+<p>Average Blogger Age: <%= @average_blogger_age %></p>
+<p>Featured Post: <%= link_to @featured_post.title, post_path(@featured_post) %></p>
+5 Most recent posts about this destination:
+<ol>
+	<% @recent_posts.each do |post| %>
+		<li><%= link_to post.title, post_path(post) %></li>
+	<% end %>
+</ol>
+
+<%# Disabled for now. Not in the requirements %>
+<!-- <p><%= link_to 'View all destinations', destinations_path %></p> -->
+
+
