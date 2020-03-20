@@ -13,6 +13,7 @@ class Blogger < ApplicationRecord
 			.reverse
 			.first(5)
 	end
+	
 	def num_of_posts_about_destination(destination)
 		self.posts.select{ |post|
 			post.destination == destination
