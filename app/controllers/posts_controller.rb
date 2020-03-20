@@ -9,6 +9,8 @@ class PostsController < ApplicationController
 		if @post.save
 			redirect_to @post
 		else
+			@bloggers = Blogger.all.sort_by{|b| b.name}
+			@destinations = Destination.all.sort_by{|d| d.name}
 			render :new
 		end
 	end
