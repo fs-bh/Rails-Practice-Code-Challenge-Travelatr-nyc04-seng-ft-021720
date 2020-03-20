@@ -15,7 +15,7 @@ class BloggersController < ApplicationController
 	end
 	def show
 		@blogger = get_instance
-		@total_likes = @blogger.total_likes		
+		@total_likes = @blogger.total_likes
 		@featured_post = @blogger.featured_post
 		@top_destinations = @blogger.top_destinations
 	end

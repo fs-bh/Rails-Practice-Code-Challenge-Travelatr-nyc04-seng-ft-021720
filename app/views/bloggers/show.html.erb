@@ -11,7 +11,10 @@
 	Top 5 most-written-about Destinations:
 	<ol>
 		<% @top_destinations.each do |destination| %>
-			<li><%= link_to destination.name, destination_path(destination) %></li>
+			<li>
+				<%= link_to destination.name, destination_path(destination) %>
+			 	- <%= @blogger.num_of_posts_about_destination(destination) %>
+				<%= @blogger.num_of_posts_about_destination(destination) > 1 ? 'posts' : 'post' %></li>
 		<% end %>
 	</ol>
 	

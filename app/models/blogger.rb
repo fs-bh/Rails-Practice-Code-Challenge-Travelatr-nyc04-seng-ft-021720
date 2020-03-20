@@ -2,16 +2,26 @@ class Blogger < ApplicationRecord
 	has_many :posts
 	has_many :destinations, through: :posts
 
+	validates :name, uniqueness: true
+	validates :age, numericality: { greater_than: 0 }
+	validates :bio, length: { minimum: 31 }
+
 	def top_destinations
-		# update this
-		self.destinations.take(5)
+		self.destinations
+			.sort_by{ |destination| num_of_posts_about_destination(destination) }
+			.reverse
+			.take(5)
+	end
+	def num_of_posts_about_destination(destination)
+		self.posts.select{ |post|
+			post.destination == destination
+		}.count
 	end
 	def total_likes
-		#update this
-		13
+		self.posts.map{ |post| post.likes }.sum
 	end
 	def featured_post
-		random_post
+		post_with_most_likes
 	end
 
 	private
@@ -20,6 +30,6 @@ class Blogger < ApplicationRecord
 		self.posts.sample
 	end
 	def post_with_most_likes
-		# tbd
+		self.posts.sort_by{ |post| post.likes }.reverse[0]
 	end
 end

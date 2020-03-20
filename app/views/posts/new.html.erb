@@ -2,8 +2,10 @@
 <%= form_for @post do |f| %>
 	<p><%= f.label :title %>: <%= f.text_field :title %></p>
 	<p><%= f.label :content %>: <%= f.text_area :content %></p>
-	<p><%= f.label :blogger_id %>: <%= f.number_field :blogger_id %></p>
-	<p><%= f.label :destination_id %>: <%= f.number_field :destination_id %></p>
+	<p><%= f.label :blogger_id %>: 
+		<%= f.collection_select :blogger_id, @bloggers, :id, :name %></p>
+	<p><%= f.label :destination_id %>: 
+		<%= f.collection_select :destination_id, @destinations, :id, :name %></p>
 	<p><%= f.submit %></p>
 <% end %>
 <%= link_to 'Cancel Creation', :back %>

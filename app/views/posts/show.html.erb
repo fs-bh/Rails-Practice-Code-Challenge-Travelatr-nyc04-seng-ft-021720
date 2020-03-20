@@ -1,5 +1,14 @@
 <h1><%= @post.title %></h1>
-<p><%= @post_content %></p>
-<p>[like button link]</p>
+
+<% if @post.likes && @post.likes > 0 %>
+	<p><%= @post.likes > 1 ? "#{@post.likes} Likes" : "#{@post.likes} Like" %></p>
+<% end %>
+
+<% @post_content_paragraphs.each do |paragraph| %>
+	<p><%= paragraph %></p>
+<% end %>
+
+<p><%= button_to 'Like!', add_like_path(@post), method: 'patch' %></p>
+
 <p>Author: <%= link_to @post.blogger.name, blogger_path(@post.blogger) %></p>
 <p>Destination: <%= link_to @post.destination.name, destination_path(@post.destination) %></p>
