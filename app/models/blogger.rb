@@ -8,9 +8,10 @@ class Blogger < ApplicationRecord
 
 	def top_destinations
 		self.destinations
-			.sort_by{ |destination| num_of_posts_about_destination(destination) }
+			.group(:id)
+			.sort_by{ |destination|	num_of_posts_about_destination(destination)	}
 			.reverse
-			.take(5)
+			.first(5)
 	end
 	def num_of_posts_about_destination(destination)
 		self.posts.select{ |post|
